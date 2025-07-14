@@ -1,0 +1,9 @@
+# dependencies
+node_modules/
+
+# dotenv secret file
+.env
+
+# misc
+.DS_Store
+*.log
