@@ -11,6 +11,10 @@ app.use(express.json());               // body‑parser
 // simple health check
 app.get('/', (req, res) => res.send('API is running'));
 
+const contactsRouter = require('./routes/contacts');
+app.use('/contacts', contactsRouter);
+
+
 const PORT = process.env.PORT || 3000;
 
 // connect to DB first, then start listening
