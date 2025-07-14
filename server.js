@@ -1,15 +1,28 @@
+// server.js
 const express = require('express');
+const cors = require('cors');
+require('dotenv').config();            // loads PORT default
+const { connectDB } = require('./config/db');
+
 const app = express();
-const port = process.env.PORT || 3000;
+app.use(cors());
+app.use(express.json());               // body‑parser
 
-require('dotenv').config();
-const contactsRoutes = require('./routes/contacts');
+// simple health check
+app.get('/', (req, res) => res.send('API is running'));
 
-app.use(express.json());
-app.use('/contacts', contactsRoutes);
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// connect to DB first, then start listening
+connectDB()
+  .then(() => {
+    app.listen(PORT, () =>
+      console.log(`🚀  Server ready on http://localhost:${PORT}`)
+    );
+  })
+  .catch((err) => {
+    console.error('❌  Failed to connect to MongoDB', err);
+    process.exit(1);
+  });
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+module.exports = app;                  // keeps it test‑friendly
