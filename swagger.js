@@ -8,8 +8,8 @@ module.exports = {
   },
   servers: [
     {
-      url: 'http://localhost:3000', // replace with Render URL on deploy
-      description: 'Local server'
+      url: 'https://contacts-zq9k.onrender.com', // replace with Render URL on deploy
+      description: 'render'
     }
   ],
   paths: {
