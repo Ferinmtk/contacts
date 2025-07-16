@@ -1,3 +1,6 @@
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger');
+
 // server.js
 const express = require('express');
 const cors = require('cors');
@@ -23,6 +26,7 @@ app.use((err, req, res, _next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Server error' });
 });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = process.env.PORT || 3000;
 

@@ -13,7 +13,7 @@ async function getAllContacts(req, res, next) {
       .toArray();
     res.json(contacts);
   } catch (err) {
-    next(err); // let Express error middleware handle it
+    next(err); 
   }
 }
 
